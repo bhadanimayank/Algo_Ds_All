@@ -14,7 +14,7 @@ Problem Constraints
 
 ============================================================================================================================================================
 
--- Mayank Bhadani
+// Mayank Bhadani - O(N) Complexity
 
 public class Solution {
     public int LBSlength(final String A) {
@@ -28,6 +28,7 @@ public class Solution {
         {
             if( A.charAt(i) == '(' || A.charAt(i) == '{' || A.charAt(i) == '[' )
             {
+                // if the brackets not closing at current index then Longest Balanced Substring at that point is 0
                 dp[i] = 0;
             }
             else
@@ -36,10 +37,12 @@ public class Solution {
                 {
                     if( A.charAt( i - 1 ) == '(' )
                     {
+                        // if the last index have a opening bracket closing at current index, then 2 + longest balanced substring before that 
                         dp[i] =  2 + ( ( i - 2 ) >= 0 ? dp[i - 2] : 0 );
                     }
                     else
                     {
+                        // if the previous bracket was closing one then check for the corrsponding open bracket for current index before last balanced string and calculate
                         dp[i] = i - dp[i - 1] - 1 >= 0 && dp[i - 1] > 0 ? ( A.charAt(i - dp[i - 1] - 1) == '(' ? dp[i - 1] + 2 : 0 ) : 0; 
                         
                         dp[i] = dp[i] + ( i - dp[i - 1] - 2 >= 0 && dp[i - 1] > 0 && dp[i] > 0 ? dp[i - dp[i - 1] - 2] : 0  );
