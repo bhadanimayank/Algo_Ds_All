@@ -88,7 +88,7 @@ public class Solution {
             {
                 /*
                     if current element should not be picked, it should have same value as last element considered(i -1) with certain target
-                    if current element is picked, it should have value equal to last element considered(i - 1) with target value (target - current element value)
+                    if current element is picked, it should have value equal to last element considered(i - 1) with target value (target - current element value), it would show if prev element had achieved the last target
                 */
                 boolean nonTaken = dp[index -1][target];
                 boolean taken = false;
