@@ -86,6 +86,10 @@ public class Solution {
         {
             for(int target = 1; target <= totalSum; target++)
             {
+                /*
+                    if current element should not be picked, it should have same value as last element considered(i -1) with certain target
+                    if current element is picked, it should have value equal to last element considered(i - 1) with target value (target - current element value)
+                */
                 boolean nonTaken = dp[index -1][target];
                 boolean taken = false;
 
