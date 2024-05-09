@@ -59,8 +59,8 @@ public class Solution {
 	public static long houseRobber(int[] valueInHouse) {
 
 		if ( valueInHouse.length==1 ) {
-            return valueInHouse[0];
-        }
+	            return valueInHouse[0];
+	        }
 
 		ArrayList<Integer> first = new ArrayList<Integer>();
 		ArrayList<Integer> last = new ArrayList<Integer>();
@@ -82,12 +82,12 @@ public class Solution {
 	public static long solve(ArrayList<Integer> arr) {
 
 		if ( arr.size()==1 ) {
-            return arr.get(0);
-        }
+	            return arr.get(0);
+	        }
 
 		if ( arr.size() ==2 ) {
-            return Math.max(arr.get(0), arr.get(1));
-        }
+	            return Math.max(arr.get(0), arr.get(1));
+	        }
 
 		long[] dp = new long[arr.size()];
 		dp[0] = arr.get(0);
