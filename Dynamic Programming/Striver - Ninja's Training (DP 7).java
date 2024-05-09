@@ -1,5 +1,5 @@
 /*
-Problem
+Problem - https://www.naukri.com/code360/problems/ninja-s-training_3621003?source=youtube&campaign=striver_dp_videos&utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_dp_videos
 ==============================================================================================================================
 
 Problem statement
