@@ -35,7 +35,6 @@ Constraints:
 
 */
 
-
 class Solution{
     
     int mod=(int)(1e9+7);
@@ -51,7 +50,41 @@ class Solution{
         Arrays.sort(arr);
 	    reverse(arr);
             
-        return solveRecursion(arr, dp, n - 1, sum);
+        return solveTabulation(arr, sum);
+        // return solveRecursion(arr, dp, n - 1, sum);
+        
+	}
+	
+	public int solveTabulation(int[] arr, int target)
+	{
+	    int dp[][] = new int[arr.length + 1][target + 1];
+	    
+	    for(int row[] : dp){
+	        Arrays.fill(row, -1);
+	    }
+	    
+	    for(int i = 0; i <= arr.length; i++)
+	        for(int j = 0; j <= target ; j++)
+    	    {
+    	        if(i == 0 && j == 0)
+    	        {
+	                dp[i][j] = 1;
+    	        }
+	            else if(i == 0 && j > 0 )
+	            {
+	                dp[i][j] = 0;
+	            }
+        	    else if( arr[i - 1] >  j)
+        	    {
+        	        dp[i][j] = dp[i -1][j] % mod;
+        	    }
+        	    else
+        	    {
+        	        dp[i][j] = ( dp[i -1][j] + dp[i - 1][j - arr[i - 1]] ) % mod;
+        	    }
+    	    }
+    	 
+    	 return dp[arr.length][target];
 	}
 	
 	public int solveRecursion(int[] arr, int[][] dp, int index, int target)
