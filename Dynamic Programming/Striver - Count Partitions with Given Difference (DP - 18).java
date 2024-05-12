@@ -112,10 +112,11 @@ So now we have to find the number of ways we could achive S1 as sum of Subsets, 
 
 ========================================================================================================================================
 
-Second very important case in this problem is that it contains 0 as a element, when solving the problem recursively from end of array.
-If 0 is at the end of array or in the middle of array, the cases will be counted.
+Second very important case in this problem is that it contains 0 as a element, when solving the problem recursively from end of array to the
+start of Array, notice that here in solution we are not stopping at target == 0 until unless we are at index 0. So we are already considering
+all the 0's at the end and middle of array.
 
-The Problem may be if at start of array is 0, then problem might be solved without considering it, So each solution can be also solved by
+The Problem may be if at start of array is 0, then problem might have been solved before recursion reaches there, So each solution can be also solved by
 including 0 at the start, So if arr[0] = 0 and target at the same time is 0, then count the solution as 2  
 
 */
