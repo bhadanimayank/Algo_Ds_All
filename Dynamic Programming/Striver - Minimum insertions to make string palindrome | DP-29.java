@@ -72,7 +72,7 @@ class Solution {
 
 /* Notes
 
-Part1
+Part1 - Palindrom Solution
 ------------------------------------------------------------------------------------------------------------------------------------------------
 Let m = 5
 i,j |   Pointer 1 (i - 1)  | Pointer 2 (m - j)
@@ -95,7 +95,7 @@ After each time second iterations completes we can point current array to prev a
 
 Also before second iteration starts each time, we need to initialize new currDP array or if initialized earlier both prevDP and currDP will point to the same array
 
-Part2 
+Part2 - Character Insertion Solution
 ---------------------------------------------------------------------------------------------------------------------------------------------
 Suppose for any string abcdba (length = 6), we can find the length of the existing longest palindrom existing in the string.
 In this case that would be 4 i.e. abba. The chracter dc is extra in the palindrom.
