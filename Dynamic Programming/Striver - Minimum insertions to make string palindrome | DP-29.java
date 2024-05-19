@@ -72,6 +72,31 @@ class Solution {
 
 /* Notes
 
+Part1
+------------------------------------------------------------------------------------------------------------------------------------------------
+Let m = 5
+i,j |   Pointer 1 (i - 1)  | Pointer 2 (m - j)
+0   |  -1                  | 5                   <- This case was ignored in the iteration it starts from i,j = 1
+1   |   0                  | 4                   <- From this case string will be compared from Both side
+2   |   1                  | 3
+3   |   2                  | 2
+4   |   3                  | 1
+5   |   4                  | 0
+
+Since we are only using current row and last row of dp array at given time.
+So we can instead use only two 1d arrays prevDP and currDP to solve the problem.
+
+Also we can initialize prevDP to 0 and we can run first iteration from i = 1.
+As we have already initialize the required first array to 0
+
+Similarly we can initialize currDP2[0] = 0 and run second iteration from j = 1
+
+After each time second iterations completes we can point current array to prev array
+
+Also before second iteration starts each time, we need to initialize new currDP array or if initialized earlier both prevDP and currDP will point to the same array
+
+Part2 
+---------------------------------------------------------------------------------------------------------------------------------------------
 Suppose for any string abcdba (length = 6), we can find the length of the existing longest palindrom existing in the string.
 In this case that would be 4 i.e. abba. The chracter dc is extra in the palindrom.
 
