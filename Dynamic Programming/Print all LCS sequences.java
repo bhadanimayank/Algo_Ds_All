@@ -49,7 +49,7 @@ class Solution
             }
         }
         
-        // Each element in this 2-D array will contain a Set of Strngs
+        // Each element in this 2-D array will contain a Set of Strings created back till that array position, a dp array for string reconstruction
         Object[][] arraySet = new Object[m + 1][n + 1];
         
         List<String> ans = new ArrayList<>();
@@ -70,9 +70,11 @@ class Solution
     {
         Set<String> set = new HashSet<>();
         
+        // Simple dp memoization check
         if(arraySet[m][n] != null)
             return (Set<String>)arraySet[m][n];
         
+        // Base condition at index 0
         if( m == 0 || n == 0 )
         {
             set.add("");
@@ -80,10 +82,12 @@ class Solution
             return set;
         }
         
+        // If character matches then move the indexes digonally back, just backtracking how the original length dp array was constructed 
         if( s.charAt(m - 1) == t.charAt(n - 1) )
         {
             Set<String> curSet = solve(dp, s, t, m - 1, n - 1, arraySet);
             
+            // add current index character at last to all the Strings returned 
             for(String str: curSet)
             {
                 set.add(str + s.charAt(m - 1));
@@ -91,9 +95,13 @@ class Solution
         }
         else
         {
+            // Both below ifs can be true at same time, then add the strings returned by function calls to the set
+            // Also backtrack the way lcs length dp was created
+            
             if( dp[m - 1][n] >= dp[m][n - 1] )
             {
-                set = solve(dp, s, t, m - 1, n, arraySet);
+                Set<String> curSet = solve(dp, s, t, m - 1, n, arraySet);
+                set.addAll(curSet);
             }
             
             if(dp[m - 1][n] <= dp[m][n - 1])
