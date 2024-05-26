@@ -53,7 +53,7 @@ class Solution {
             hash[i] = i;
             for(int prevIndex = 0; prevIndex <= i - 1; prevIndex++ )
             {
-                if( arr[prevIndex] < arr[i] && dp[i] < 1 + dp[prevIndex] )
+                if( arr[prevIndex] < arr[i] && 1 + dp[prevIndex] > dp[i] )
                 {
                     dp[i] = 1 + dp[prevIndex];
                     hash[i] = prevIndex;
@@ -87,6 +87,8 @@ class Solution {
         
     }
 }
+
+// Notes
 
 arr, dp = 
 ===============================================================================================
