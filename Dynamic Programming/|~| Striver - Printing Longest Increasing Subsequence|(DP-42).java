@@ -1,5 +1,92 @@
+/* Problem - https://www.geeksforgeeks.org/problems/printing-longest-increasing-subsequence/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=printing-longest-increasing-subsequence
 
+https://takeuforward.org/data-structure/printing-longest-increasing-subsequence-dp-42/
 
+Print Longest Increasing Subsequence
+MediumAccuracy: 58.05%Submissions: 9K+Points: 4
+Get Internship at GfG by submitting your Entries in: Data Science Blogathon
+
+banner
+Given an integer n and an array of integers arr, return the Longest Increasing Subsequence which is Index-wise lexicographically smallest.
+Note - A subsequence S1 is Index-wise lexicographically smaller than a subsequence S2 if in the first position where S1 and S2 differ, subsequence S1 has an element that appears earlier in the array  arr than the corresponding element in S2.
+LIS  of a given sequence is defined as that longest possible subsequence all of whose elements are in increasing order. For example, the length of LIS for {10, 22, 9, 33, 21, 50, 41, 60, 80} is 6 and the LIS is {10, 22, 33, 50, 60, 80}. 
+
+Example 1:
+
+Input:
+n = 16
+arr = [0,8,4,12,2,10,6,14,1,9,5,13,3,11,7,15]
+Output:
+0 4 6 9 13 15 
+Explanation:
+longest Increasing subsequence is 0 4 6 9 13 15  and the length of the longest increasing subsequence is 6.
+Example 2:
+
+Input:
+n = 1
+arr = [1]
+Output:
+1
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function longestIncreasingSubsequence() which takes integer n and array arr and returns the longest increasing subsequence.
+
+Expected Time Complexity: O(n2)
+Expected Space Complexity: O(n)
+
+Constraint:
+1 <= n < = 103
+0 <= arr[i] <= 109
+
+*/
+
+class Solution {
+    public ArrayList<Integer> longestIncreasingSubsequence(int n, int arr[]) {
+        
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        
+        int[] hash = new int[n];
+        Arrays.fill(hash, 1);
+        
+        for(int i = 0; i <= n - 1; i++)
+        {
+            hash[i] = i;
+            for(int prevIndex = 0; prevIndex <= i - 1; prevIndex++ )
+            {
+                if( arr[prevIndex] < arr[i] && dp[i] < 1 + dp[prevIndex] )
+                {
+                    dp[i] = 1 + dp[prevIndex];
+                    hash[i] = prevIndex;
+                }
+            }
+        }
+        
+        int ans = -1;
+        int last_Index = -1;
+        
+        for(int i = 0; i <= n - 1; i++)
+        {
+            if(dp[i]> ans)
+            {
+                ans = dp[i];
+                last_Index = i;
+            }
+        }
+        
+        ArrayList<Integer> lis = new ArrayList<>();
+        
+        lis.add(arr[last_Index]);
+        
+        while(hash[last_Index] != last_Index)
+        {
+            last_Index = hash[last_Index];
+            lis.add(0, arr[last_Index]);
+        }
+        
+        return lis;
+        
+    }
+}
 
 arr, dp = 
 ==================================================================================
