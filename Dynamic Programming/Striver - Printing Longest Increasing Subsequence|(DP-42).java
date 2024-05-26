@@ -106,7 +106,7 @@ Arrays.fill(dp, 1);
 ------------------------
 | 1 | 1 | 1 | 1 | 1 | 1|    <-- hash
 ------------------------
-  0   1   2   3   4   5                ( hash[i] = i ), ( hash[i] = prevIndex )
+  0   1   2   3   4   5                ( hash[i] = i ) on first loop, ( hash[i] = prevIndex ) if conditon inside first loop is true
 
 ===============================================================================================
 
