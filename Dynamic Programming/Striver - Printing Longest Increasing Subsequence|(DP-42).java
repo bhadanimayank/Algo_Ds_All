@@ -551,6 +551,4 @@ LIS     ->  4  ->  3  ->  2  ->  1 |
    So where hash[i] = i that means it does not have any prev element as it was not updated in second loop. So when we print LIS, we an stop when 
    hash[i] = i.  
 
-
-
 */
