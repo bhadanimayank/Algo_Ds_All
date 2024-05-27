@@ -531,3 +531,26 @@ Indexes ->  5  ->  4  ->  2  ->  0 |
 LIS     ->  4  ->  3  ->  2  ->  1 |
 ------------------------------------
           
+/* Explaination
+
+-> Second loop is run till n - 1 becasue prev elemnt will always be less then currect elem
+-> It's like moving windows technique, so every time second loop runs from 0 ... i. then 0 ... i + 1, then 0 ... i + 2 till 0 ... n - 1.
+-> So every time second loop runs for i + 1 or till next elem, next elemnet is compared to all prev element if it's bigger then prev_element, 
+   dp is  dp[prev] + 1
+-> So suppose there is an array [3, 4, 5] and initial dp is [1, 1, 1] because in itself every elemnet is minimal LIS. So at first loop 3 is compare to 4
+   so dp now is [1, 2, 1]. Nw a second loop 3 is compared to 5, Now dp would be [1, 2, 2]. Now 4 is compared to 5. So dp will be [1, 2, 3]
+   That's the intution, every new element i + 1 getting compared to prev elemnts, if it's larger it will increment it's dp by 1 from dp of prev element.
+-> Also the i + 1 dp must be equal to or less then prev elem dp, or it will not be incremented because currently i + 1 dp is already indicating longer LIS
+   then the prev Element.
+-> So to understand last point consider an array [3, 4, 1, 5] and dp is [1, 2, 1, 3] till element 4 is compared to 5, now compare elemt 1 to 5.
+   Here 5 is bigger to 1. But dp for 5 is already indicating at longer LIS. So dp for 5 will not be incremented.
+-> Now we can understand how hash is indicating the longest LIS. So we can understand that dp only gets incremented if it's going to indicate longest LIS 
+   by comparing it to prev element. and that prev element is compared to it's prev element when t's dp was incremented. So every time dp is getting
+   incremented, we can store the prev_index in the hash, now iteratively the next dp increment will have the current element as prev_index.
+   So it's make a chain of prev indexes. Now we are doing hash[i] = i for every first loop.
+   So where hash[i] = i that means it does not have any prev element as it was not updated in second loop. So when we print LIS, we an stop when 
+   hash[i] = i.  
+
+
+
+*/
