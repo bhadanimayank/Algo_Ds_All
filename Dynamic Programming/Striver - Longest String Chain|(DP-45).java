@@ -77,23 +77,28 @@ class Solution {
         return max;
     }
 
-    static boolean compare(String s1, String s2) {
-        if (s1.length() != s2.length() + 1) {
+    static boolean compare(String word, String prevWord) {
+
+        if (word.length() != prevWord.length() + 1) {
             return false;
         }
 
-        int first = 0;
-        int second = 0;
+        int i = 0, j = 0;
+        int m = word.length(), n = prevWord.length();
 
-        while (first < s1.length()) {
-            if (second < s2.length() && s1.charAt(first) == s2.charAt(second)) {
-                first++;
-                second++;
-            } else {
-                first++;
+        while(i < m )
+        {
+            if( j < n && word.charAt(i) == prevWord.charAt(j) )
+            {
+                i++;
+                j++;
             }
-        }
-
-        return first == s1.length() && second == s2.length();
+            else
+            {
+                i++;
+            }
+        } 
+        
+        return i == m && j == n;
     }
 }
