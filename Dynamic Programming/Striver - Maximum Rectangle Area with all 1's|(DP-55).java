@@ -47,7 +47,7 @@ class Solution {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
-        int[] heights = new int[cols + 1];
+        int[] heights = new int[cols + 1]; // +1 is for calculating area for the last bar in the histogran
 
         Arrays.fill(heights, 0);
 
