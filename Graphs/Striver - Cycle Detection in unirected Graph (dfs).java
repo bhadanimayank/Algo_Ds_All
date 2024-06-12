@@ -40,12 +40,6 @@ NOTE: The adjacency list denotes the edges of the graph where edges[i] stores al
 Expected Time Complexity: O(V + E)
 Expected Space Complexity: O(V)
 
-
- 
-
-Constraints:
-1 ≤ V, E ≤ 105
-
 */
 
 class Solution {
@@ -57,7 +51,7 @@ class Solution {
         
         for(int i = 0; i < V; i++)
         {
-            if(!visited[i] && /* dfs(adj, visited, i, -1) */  bfs(adj, visited, i))
+            if(!visited[i] && dfs(adj, visited, i, -1))
             {
                 return true;
             }
@@ -66,36 +60,17 @@ class Solution {
         return false;
     }
     
-    public boolean bfs(ArrayList<ArrayList<Integer>> adj, boolean[] visited, int dependency)
+    public boolean dfs(ArrayList<ArrayList<Integer>> adj, boolean[] visited, int dependency, int parent)
     {
-        Queue<Integer> queue = new LinkedList<Integer>();
+        if(visited[dependency])
+            return true;
         
-        int[] parent = new int[adj.size()];
-        Arrays.fill(parent, -1);
-        
-        queue.offer(dependency);
-            
         visited[dependency] = true;
         
-        while(!queue.isEmpty())
+        for(int nbr : adj.get(dependency))
         {
-            int current = queue.poll();
-            
-            for(int i = 0; i < adj.get(current).size(); i++)
-            {
-                int child = adj.get(current).get(i);
-                
-                if(!visited[child])
-                {
-                    queue.offer(child);
-                    visited[child] = true;
-                    parent[child] = current;
-                }
-                else if(parent[current] != child)
-                {
-                    return true;
-                }
-            }
+            if(nbr != parent && dfs(adj, visited, nbr, dependency))
+                return true;
         }
         
         return false;
@@ -103,14 +78,15 @@ class Solution {
 }
 
 /* Notes
-Simple bfs algorithm implemented via queue. To detect a cycle here we initaited parent array and fill the array every time processing polled element and indicate parents.
-To detect a cycle, we check if we are visiting a visited element again. Only exception is if the chiild is parent of parent too. As this is an undirceted graph.
 
-So in adj graph representation for a edge 1 - 2, it will be represented as 
+We are here itertaively folowing each entry in graph and by updating and checking visisted array tryng to detect if a cycle exist in the graph or not.
 
-1 -> 2
-2 -> 1
+Imporatant condition (nbr != parent) in line 72 is present to check if the undirected relation between two nodes won't be wrongly flagged as cycle
 
-but it's not reprenting a cycle
+Because in the undirectional graph representation between 1 and 2
 
+1 will have entry of 2
+and 2 will have entry of 1
+
+So have to take care of this point while searching cycles
 */
