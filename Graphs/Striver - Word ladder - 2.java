@@ -43,17 +43,16 @@ The sum of all shortest transformation sequences does not exceed 105.
 */
 
 class Solution {
-
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
 
-        Set<String> st = new HashSet<String>(wordList);
-        Queue<ArrayList<String>> queue = new LinkedList<>();
+        Set<String> set = new HashSet<String>(wordList);
+        Queue<List<String>> queue = new LinkedList<>();
 
-        ArrayList<String> ls = new ArrayList<>();
-        ls.add(beginWord);
-        queue.offer(ls);
+        List<String> lst = new ArrayList<String>();
+        lst.add(beginWord);
+        queue.offer(lst);
 
-        ArrayList<String> usedOnLevel = new ArrayList<>();
+        List<String> usedOnLevel = new ArrayList<String>();
         usedOnLevel.add(beginWord);
         int level = 0;
 
@@ -61,53 +60,53 @@ class Solution {
 
         while(!queue.isEmpty())
         {
-            ArrayList<String> lst = queue.poll();
+            List<String> current = queue.poll();
 
-            if(lst.size() > level)
+            if(current.size() > level)
             {
-                level++;
+                ++level;
 
                 for(String it: usedOnLevel)
                 {
-                    st.remove(it);
+                    set.remove(it);
                 }
             }
 
-            String word = lst.get(lst.size() - 1);
+            String word = current.get(current.size() - 1);
 
             if(word.equals(endWord))
             {
                 if(ans.size() == 0)
                 {
-                    ans.add(lst);
+                    ans.add(current);
                 }
-                else if(ans.get(0).size() == lst.size())
+                else if(ans.get(0).size() == current.size())
                 {
-                    ans.add(lst);
+                    ans.add(current);
                 }
             }
 
-            for (int i = 0; i < word.length(); i++)
+            for(int i = 0; i < word.length(); i++)
             {
-                for (char c = 'a'; c <= 'z'; c++)
+                for(char ch = 'a'; ch <= 'z'; ch++)
                 {
                     char[] wordCharArray = word.toCharArray();
-                    wordCharArray[i] = c;
+                    wordCharArray[i] = ch;
+
                     String transformedWord = new String(wordCharArray);
 
-                    if(st.contains(transformedWord))
+                    if(set.contains(transformedWord))
                     {
-                        lst.add(transformedWord);
-                        
-                        ArrayList<String> temp = new ArrayList<String>(lst);
+                        current.add(transformedWord);
+
+                        List<String> temp = new ArrayList<String>(current);
                         queue.add(temp);
 
                         usedOnLevel.add(transformedWord);
-                        lst.remove(lst.size() - 1);
+                        current.remove(current.size() - 1);
                     }
                 }
             }
-
         }
 
         return ans;
