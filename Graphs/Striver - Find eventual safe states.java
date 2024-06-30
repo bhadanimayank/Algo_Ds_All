@@ -49,7 +49,7 @@ class Solution {
         int n = graph.length;
         int[] indegree = new int[n];
 
-        List<List<Integer>> adj = new ArrayList<>(n);
+        List<List<Integer>> adj = new ArrayList<>();
         List<Integer> ans = new ArrayList<>();
 
         for(int i = 0; i < n; i++)
