@@ -133,3 +133,11 @@ class Solution {
     }
 }
 
+
+/* Notes
+
+Create Dist arrays to compare the min value to check and update
+
+
+/
+
