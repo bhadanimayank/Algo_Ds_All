@@ -61,3 +61,46 @@ class Solution {
         }
     }
 }
+
+/* Notes
+
+just moved the array elements 1 position
+
+*/
+
+
+// Approach2
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        
+        int n = nums.length;
+
+        if(k > n)
+            k = k % n;
+
+        int[] temp = new int[k];
+
+        for(int i = 0; i < k; i++)
+        {
+            temp[i] = nums[(n - k) + i];
+        }
+        
+        for(int j = n - 1; j > k - 1; j--)
+        {
+            nums[j] = nums[j - k];
+        }
+
+        for(int i = 0; i < k; i++)
+        {
+            nums[i] = temp[i];
+        }
+    }
+}
+
+
+/* Notes
+
+Copy the k elements from end of the array to the new array. move the elements k positions. Now copy the elements from the temp array to start of the array.
+
+*/
