@@ -86,7 +86,13 @@ class Solution {
     }
 }
 
-/*Notes
+/* Notes
 checkStars checks if the at the string has matched the pattren and if there remains one or more stars at the start of the pattern string
+
+*/
+
+/* Revision
+
+11-08-2024 Read Revised
 
 */
