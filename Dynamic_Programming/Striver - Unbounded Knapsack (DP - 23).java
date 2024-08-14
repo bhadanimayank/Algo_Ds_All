@@ -108,7 +108,7 @@ public class Solution {
             return Integer.MIN_VALUE;
         }
 
-        if( dp[i][w] != -1 )
+        if ( dp[i][w] != -1 )
             return dp[i][w];
 
         int nonPick = solveKnapsack(i + 1, n, w, profit, weight, dp);
@@ -124,3 +124,9 @@ public class Solution {
 
     }
 }
+
+/* Revision
+
+13-08-2024 Read Revised
+
+*/
