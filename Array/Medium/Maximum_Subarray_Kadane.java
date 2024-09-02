@@ -71,6 +71,6 @@ decreased.
 
 So each time a element is added we will set the maxiumum value achieved in maxSum having the end result.
 
-But if the curSum value dips below zero, we are going to reset the value. Basically meaning starting the summation  from next element.
+But if the curSum value dips below zero, we are going to reset the value. Basically meaning starting the summation from next element.
 
 */
