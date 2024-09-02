@@ -79,3 +79,107 @@ Iterate the array and check and store the value and count in HashMap
 Iterate the Hashmap, check count greater than threshold and store the elements in answer list.
 
 */
+
+// Solution 2 - Boyer Moore’s Voting Algorithm
+
+class Solution {
+
+    public List<Integer> majorityElement(int[] nums) {
+
+        int elm1 = Integer.MIN_VALUE, elm2 = Integer.MIN_VALUE;
+        int cnt1 = 0, cnt2 = 0;
+
+        int threshold = nums.length/3;
+
+        for(int num: nums)
+        {
+            if(cnt1 == 0 && num != elm2)
+            {
+                ++cnt1;
+                elm1 = num;
+            }
+            else if(cnt2 == 0 && num != elm1)
+            {
+                ++cnt2;
+                elm2 = num;
+            }
+            else if(elm1 == num)
+            {
+                ++cnt1;
+            }
+            else if(elm2 == num)
+            {
+                ++cnt2;
+            }
+            else
+            {
+                --cnt1;
+                --cnt2;
+            }
+        }
+
+        cnt1 = 0;
+        cnt2 = 0;
+
+        for(int num: nums)
+        {
+            if(num == elm1)
+                ++cnt1;
+
+            if(num == elm2)
+                ++cnt2;
+        }
+
+        List<Integer> ans = new ArrayList<>();
+        
+        if(cnt1 > threshold)
+        {
+            ans.add(elm1);
+        }
+
+        if(cnt2 > threshold)
+        {
+            ans.add(elm2);
+        }
+
+        return ans;
+        
+    }
+}
+
+/* Notes - Solution 2 - Boyer Moore’s Voting Algorithm
+
+So First thing to notice if we have an array of length N. We need to find the elements which appear more than N/3 times.
+
+so there could be no elements present such as that. Also, there could be at max 2 such elements could be present
+
+(N/3 + a) + (N/3 + b) + c = N
+
+c = (N - N/3 - N/3) - a - b;
+
+c = N/3 - a - b;
+
+So, third element appearance would always be less than N/3
+
+=======================================================================================================================================================
+
+Now explaining Boyer Moore’s Voting Algorithm.
+
+We declare elm1 and elm2 to record 2 elements with most frequency.
+We correspondingly declare cnt1 and cnt2 to note the frequency.
+
+So basically what we do we start with first 2 unique elemets in array and assign it to elm1 and elm2
+
+if we again encounter those elements we increment cnt1 and cnt2
+
+If we encounter any other elements then decrease cnt1 and cnt2
+
+if cnt1 or cnt2 equals 0, then assign the next element to elm1 or elm2.
+
+finally elm1 and elm2 will hold elements with maximum frequency
+
+then again iterate the array to count the total frequency of elm1 and elm2
+
+compare both with threshold frequency and add to the answer list and return the same.
+
+*/
