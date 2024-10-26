@@ -43,6 +43,8 @@ Constraints:
 
 */
 
+// Java
+
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         
@@ -85,6 +87,63 @@ class Solution {
                     
                     while(j < k && nums[k] == nums[k + 1])
                         --k;
+                }
+            }
+        }
+
+        return ans;
+    }
+}
+
+
+// C#
+
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        
+        Array.Sort(nums);
+
+        List<IList<int>> ans = new List<IList<int>>();
+
+        int n = nums.Length;
+
+        for(int i = 0; i < n; i++)
+        {
+            if(i != 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int j = i + 1;
+            int k = n - 1;
+
+            while(j < k)
+            {
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum < 0)
+                {
+                    ++j;
+                }
+                else if(sum > 0)
+                {
+                    --k;
+                }
+                else
+                {
+                    List<int> temp = new List<int>{nums[i], nums[j], nums[k]};
+                    ans.Add(temp);
+
+                    ++j;
+                    --k;
+
+                    while(j < k && nums[j - 1] == nums[j])
+                    {
+                        ++j;
+                    }
+
+                    while(j < k && nums[k] == nums[k + 1])
+                    {
+                        --k;
+                    }
                 }
             }
         }
